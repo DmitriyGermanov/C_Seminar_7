@@ -1,8 +1,4 @@
-﻿//  Задайте двумерный массив. Найдите элементы, у
-// которых оба индекса чётные, и замените эти элементы на их
-// квадраты.
-
-// Задача 51: Задайте двумерный массив. Найдите сумму элементов, находящихся на главной диагонали (с индексами (0,0); (1;1) и т.д.
+﻿// Задача 51: Задайте двумерный массив. Найдите сумму элементов, находящихся на главной диагонали (с индексами (0,0); (1;1) и т.д.
 // Например, задан массив:
 // 1 4 7 2
 // 5 9 2 3
@@ -16,8 +12,9 @@ int columns = GetNum("Введите количество столбцов: ");
 int[,] matrix = GetArray(rows, columns);
 PrintArray(matrix);
 Console.WriteLine();
-matrix = FindArray(matrix);
-PrintArray(matrix);
+int a = FindSumm(matrix);
+
+Console.WriteLine($"Сумма элементов массива = {a});
 
 int GetNum(string message)
 {
@@ -39,17 +36,18 @@ int[,] GetArray(int row, int column)
 }
 
 
-int[,] FindArray(int[,] array)
+int FindSumm(int[,] array)
 {
+    int summ = 0;
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            if (i % 2 == 0 && j % 2 == 0)
-                array[i, j] *= array[i, j];
+            if (i == j)
+                summ += array[i, j];
         }
     }
-    return array;
+    return summ;
 }
 
 void PrintArray(int[,] array)
